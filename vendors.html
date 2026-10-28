@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connect360 Vendors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main>
+    <div class="container">
+      <div class="page-head">
+        <div>
+          <h1>Vendor Network</h1>
+          <p>Every service partner in the Connect360 network and the executive who owns the relationship.</p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span id="adminTools" hidden>
+            <button class="btn btn-ghost btn-sm" id="exportBtn" title="Download vendors.json including local changes">Export JSON</button>
+            <button class="btn btn-ghost btn-sm" id="resetBtn" title="Discard changes stored in this browser">Reset local changes</button>
+          </span>
+          <button class="btn btn-gold" id="addBtn">+ Add Vendor / Service</button>
+        </div>
+      </div>
+
+      <section class="kpis" id="kpis"></section>
+
+      <section class="panel">
+        <div class="toolbar">
+          <div class="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input type="search" id="q" placeholder="Search name, profile, remarks, services, contact, area…" aria-label="Search vendors">
+          </div>
+          <select id="fCategory" aria-label="Category"><option value="">All categories</option></select>
+          <select id="fExec" aria-label="Executive"><option value="">All executives</option></select>
+          <select id="fStatus" aria-label="Status"><option value="">All statuses</option></select>
+          <button class="btn btn-ghost btn-sm" id="clearBtn">Clear</button>
+        </div>
+        <div class="result-count" id="count"></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Vendor</th><th>Category</th><th>Services</th><th>Contact</th><th>Executive</th><th>Status</th><th>Onboarded</th></tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <div class="empty" id="empty" hidden>No vendors match your search.</div>
+      </section>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <!-- Vendor detail -->
+  <dialog id="detailDlg">
+    <div class="dlg-head"><h3 id="dTitle"></h3><button class="dlg-close" data-close aria-label="Close">×</button></div>
+    <div class="dlg-body" id="dBody"></div>
+    <div class="dlg-foot" id="dFoot"></div>
+  </dialog>
+
+  <!-- Add / edit vendor -->
+  <dialog id="formDlg">
+    <form id="vForm" method="dialog" novalidate>
+      <div class="dlg-head"><h3 id="fTitle">Add Vendor / Service</h3><button type="button" class="dlg-close" data-close aria-label="Close">×</button></div>
+      <div class="dlg-body">
+        <div class="error" id="fError" role="alert"></div>
+        <div class="form-grid">
+          <div class="full"><label for="name">Vendor name <span class="req">*</span></label><input id="name" name="name" required></div>
+          <div>
+            <label for="category">Category <span class="req">*</span></label>
+            <input id="category" name="category" list="categoryList" required placeholder="e.g. Hospital">
+            <datalist id="categoryList"></datalist>
+          </div>
+          <div><label for="status">Status</label><select id="status" name="status"></select></div>
+          <div class="full"><label for="services">Services offered</label><input id="services" name="services" placeholder="Corporate health check-ups, Cashless insurance tie-up"><div class="hint">Separate services with commas.</div></div>
+          <div><label for="contactPerson">Contact person</label><input id="contactPerson" name="contactPerson"></div>
+          <div><label for="phone">Contact number <span class="req">*</span></label><input id="phone" name="phone" type="tel" required placeholder="+91 98xxx xxxxx"></div>
+          <div><label for="email">Email</label><input id="email" name="email" type="email"></div>
+          <div><label for="area">Area / locality</label><input id="area" name="area" placeholder="e.g. Swaraj Round"></div>
+          <div class="full"><label for="address">Address</label><input id="address" name="address"></div>
+          <div><label for="executiveId">Executive (owner) <span class="req">*</span></label><select id="executiveId" name="executiveId" required></select></div>
+          <div><label for="onboardedOn">Onboarded on</label><input id="onboardedOn" name="onboardedOn" type="date"></div>
+          <div class="full"><label for="profile">Vendor profile</label><textarea id="profile" name="profile" rows="3" placeholder="What the business does, size, specialities"></textarea></div>
+          <div class="full"><label for="remarks">Remarks</label><textarea id="remarks" name="remarks" rows="3" placeholder="Terms, discounts, preferred contact, next steps"></textarea></div>
+        </div>
+      </div>
+      <div class="dlg-foot">
+        <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+        <button type="submit" class="btn btn-navy" id="saveBtn">Save vendor</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/vendors.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connect360 Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="login-wrap">
+    <section class="login-hero">
+      <div>
+        <div id="heroBrand"></div>
+        <div class="pillars">STRATEGY &nbsp;|&nbsp; EFFICIENCY &nbsp;|&nbsp; SUSTAINABLE GROWTH</div>
+        <h1>Your Business.<br>Our Expertise.<br><span>360° Solutions.</span></h1>
+        <p>Partner portal for the Connect360 team. Track every service vendor in our network and the executive who owns the relationship.</p>
+      </div>
+      <div class="script">Your Growth. Our Commitment.</div>
+    </section>
+
+    <section class="login-form-side">
+      <form class="login-card" id="loginForm" novalidate>
+        <h2 class="section-title">Partner Login</h2>
+        <p class="muted" style="margin-bottom:22px">Sign in with your Connect360 username and password.</p>
+        <div class="error" id="loginError" role="alert"></div>
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" name="username" autocomplete="username" required autofocus>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required>
+        </div>
+        <button class="btn btn-navy" type="submit">Log in</button>
+
+        <div class="demo-creds">
+          <strong>Demo accounts</strong> (placeholder data)<br>
+          Admin: <code>admin</code> / <code>admin@360</code><br>
+          Executive: <code>divya</code> / <code>c360@2026</code>
+        </div>
+        <div class="login-links">
+          <a href="about.html">About us</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    if (C360.session()) location.replace("vendors.html");
+    document.getElementById("heroBrand").innerHTML = C360.brand("index.html");
+
+    const form = document.getElementById("loginForm");
+    const err = document.getElementById("loginError");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      err.style.display = "none";
+      const u = form.username.value, p = form.password.value;
+      if (!u || !p) {
+        err.textContent = "Enter both username and password.";
+        err.style.display = "block";
+        return;
+      }
+      try {
+        const s = await C360.login(u, p);
+        if (s) return location.replace("vendors.html");
+        err.textContent = "Incorrect username or password.";
+      } catch (ex) {
+        err.textContent = "Could not reach the data files. Serve the site over HTTP (see README).";
+      }
+      err.style.display = "block";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+[
+  { "username": "admin",   "password": "admin@360", "role": "admin",     "executiveId": "E01" },
+  { "username": "divya",   "password": "c360@2026", "role": "executive", "executiveId": "E02" },
+  { "username": "rahul",   "password": "c360@2026", "role": "executive", "executiveId": "E03" },
+  { "username": "sreeja",  "password": "c360@2026", "role": "executive", "executiveId": "E04" },
+  { "username": "jithin",  "password": "c360@2026", "role": "executive", "executiveId": "E05" },
+  { "username": "fathima", "password": "c360@2026", "role": "executive", "executiveId": "E06" },
+  { "username": "arun",    "password": "c360@2026", "role": "executive", "executiveId": "E07" },
+  { "username": "neethu",  "password": "c360@2026", "role": "executive", "executiveId": "E08" },
+  { "username": "midhun",  "password": "c360@2026", "role": "executive", "executiveId": "E09" },
+  { "username": "aswathy", "password": "c360@2026", "role": "executive", "executiveId": "E10" }
+]

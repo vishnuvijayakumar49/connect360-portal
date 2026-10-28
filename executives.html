@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connect360 Executives</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main>
+    <div class="container">
+      <div class="page-head">
+        <div>
+          <h1>Executives</h1>
+          <p>The Connect360 partners, the sector each one owns and the vendors they have brought in.</p>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <span class="badge-ro" id="roBadge" hidden>🔒 Read-only — admin access needed to make changes</span>
+          <span id="adminTools" hidden style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn btn-ghost btn-sm" id="exportBtn">Export JSON</button>
+            <button class="btn btn-gold" id="addBtn">+ Add Executive</button>
+          </span>
+        </div>
+      </div>
+
+      <section class="kpis" id="kpis"></section>
+
+      <div class="toolbar panel" style="margin-bottom:18px;border-bottom:none">
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" id="q" placeholder="Search executives by name, sector, phone or email…" aria-label="Search executives">
+        </div>
+        <select id="sort" aria-label="Sort by">
+          <option value="vendors">Sort: most vendors</option>
+          <option value="name">Sort: name</option>
+          <option value="joined">Sort: joined date</option>
+        </select>
+      </div>
+
+      <section class="exec-grid" id="grid"></section>
+      <div class="empty" id="empty" hidden>No executives match your search.</div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <dialog id="formDlg">
+    <form id="eForm" novalidate>
+      <div class="dlg-head"><h3 id="fTitle">Add Executive</h3><button type="button" class="dlg-close" data-close aria-label="Close">×</button></div>
+      <div class="dlg-body">
+        <div class="error" id="fError" role="alert"></div>
+        <div class="form-grid">
+          <div><label for="ename">Full name <span class="req">*</span></label><input id="ename" name="name" required></div>
+          <div><label for="designation">Designation</label><input id="designation" name="designation" placeholder="Partner – Healthcare"></div>
+          <div><label for="ephone">Phone <span class="req">*</span></label><input id="ephone" name="phone" type="tel" required></div>
+          <div><label for="eemail">Email</label><input id="eemail" name="email" type="email"></div>
+          <div><label for="sector">Sector focus</label><input id="sector" name="sector" placeholder="e.g. Healthcare"></div>
+          <div><label for="joinedOn">Joined on</label><input id="joinedOn" name="joinedOn" type="date"></div>
+          <div class="full"><label for="bio">Short bio</label><textarea id="bio" name="bio" rows="2"></textarea></div>
+          <div class="full" id="loginFields">
+            <label>Portal login (optional)</label>
+            <div class="form-grid">
+              <div><input name="username" id="lUser" placeholder="Username" autocomplete="off"></div>
+              <div><input name="password" id="lPass" placeholder="Password" autocomplete="new-password"></div>
+            </div>
+            <div class="hint">Creates an executive login stored in this browser (demo only).</div>
+          </div>
+        </div>
+      </div>
+      <div class="dlg-foot">
+        <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+        <button type="submit" class="btn btn-navy" id="saveBtn">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/executives.js"></script>
+</body>
+</html>

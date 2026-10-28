@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Connect360</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <section class="hero" style="padding-bottom:80px">
+    <div class="container">
+      <div class="eyebrow">Contact Us</div>
+      <h1>Let's build a <span>stronger future</span> together.</h1>
+      <p>Tell us about your business. Whether it's fund flow, cost control, software or the right partner, our team will get back to you.</p>
+    </div>
+  </section>
+
+  <main style="padding-top:0">
+    <div class="container">
+      <div class="contact-cards">
+        <div class="contact-card"><span class="icon-circle" data-icon="pin"></span><h3>Office</h3><p>Thrissur, Kerala<br>(Operating across India)</p></div>
+        <div class="contact-card"><span class="icon-circle" data-icon="phone"></span><h3>Phone</h3><p><a href="tel:+919876543210">+91 98765 43210</a></p></div>
+        <div class="contact-card"><span class="icon-circle" data-icon="mail"></span><h3>Email</h3><p><a href="mailto:info@connect360.in">info@connect360.in</a></p></div>
+        <div class="contact-card"><span class="icon-circle" data-icon="globe"></span><h3>Website</h3><p><a href="https://www.connect360.in" target="_blank" rel="noopener">www.connect360.in</a></p></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;margin-top:36px" class="contact-wrap">
+        <form class="panel" id="enquiry" style="padding:24px" novalidate>
+          <h2 class="section-title">Send an enquiry</h2>
+          <p class="muted" style="margin-bottom:18px">This opens your email app with the message ready to send.</p>
+          <div class="error" id="cError" role="alert"></div>
+          <div class="form-grid">
+            <div><label for="cname">Your name <span class="req">*</span></label><input id="cname" required></div>
+            <div><label for="ccompany">Company</label><input id="ccompany"></div>
+            <div><label for="cphone">Phone <span class="req">*</span></label><input id="cphone" type="tel" required></div>
+            <div><label for="cemail">Email</label><input id="cemail" type="email"></div>
+            <div class="full">
+              <label for="ctopic">I'm interested in</label>
+              <select id="ctopic">
+                <option>Business Management &amp; Expert Consultancy</option>
+                <option>Fund Flow &amp; Working Capital Management</option>
+                <option>Income Leakage Identification</option>
+                <option>Cost Optimization</option>
+                <option>Software Solutions</option>
+                <option>Manpower Recruitment</option>
+                <option>Process Improvement</option>
+                <option>Business Referrals (banking, lending, insurance, technology)</option>
+                <option>Becoming a vendor / service partner</option>
+              </select>
+            </div>
+            <div class="full"><label for="cmsg">Message</label><textarea id="cmsg" rows="4" placeholder="Tell us briefly about your business and challenge"></textarea></div>
+          </div>
+          <div style="margin-top:16px"><button class="btn btn-navy" type="submit">Send enquiry</button></div>
+        </form>
+
+        <div>
+          <div class="panel" style="padding:24px;margin-bottom:20px">
+            <h2 class="section-title">Who we work with</h2>
+            <ul class="checklist" style="margin-top:12px">
+              <li>Small and medium-sized enterprises (SMEs)</li>
+              <li>Traders and wholesalers</li>
+              <li>Manufacturers and subcontractors</li>
+              <li>Service vendors who want to join our trusted partner network</li>
+            </ul>
+          </div>
+          <div class="cta-band" style="flex-direction:column;align-items:flex-start">
+            <div style="font-weight:600">Better Decisions · Stronger Operations · Higher Profits</div>
+            <span class="script">Your Growth. Our Commitment.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <style>
+    @media (max-width: 860px) { .contact-wrap { grid-template-columns: 1fr !important; } }
+  </style>
+  <script src="assets/js/app.js"></script>
+  <script>
+    C360.shell("contact", { requireAuth: false });
+    document.getElementById("enquiry").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const v = (id) => document.getElementById(id).value.trim();
+      const err = document.getElementById("cError");
+      if (!v("cname") || !v("cphone")) {
+        err.textContent = "Please enter your name and phone number.";
+        err.style.display = "block";
+        return;
+      }
+      err.style.display = "none";
+      const body = `Name: ${v("cname")}\nCompany: ${v("ccompany")}\nPhone: ${v("cphone")}\nEmail: ${v("cemail")}\nInterested in: ${v("ctopic")}\n\n${v("cmsg")}`;
+      location.href = `mailto:info@connect360.in?subject=${encodeURIComponent("Enquiry: " + v("ctopic"))}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+</body>
+</html>
